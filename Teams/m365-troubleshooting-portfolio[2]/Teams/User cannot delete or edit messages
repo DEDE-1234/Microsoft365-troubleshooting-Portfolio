@@ -1,0 +1,34 @@
+ Microsoft Teams – User Cannot Edit or Delete Messages
+
+## Issue  
+User reported that they were unable to edit or delete their own messages in Teams chats and channels.  
+The options to *Edit* or *Delete* did not appear when hovering over their messages.  
+
+## Environment  
+- Application/Service: Microsoft Teams (Chat and Channel Messaging)  
+- Platform: Teams Desktop and Web App  
+- Account Type: Internal user  
+
+## Root Cause  
+A restrictive *Messaging Policy* was applied to the user account in Teams Admin Center.  
+The policy had both Edit sent messages and Delete sent messages set to *Off*.  
+
+## Steps Taken  
+1. Verified issue was consistent across Teams Desktop and Web → not a client issue.  
+2. Tested with another user → they had the option to edit/delete, confirming it was not global.  
+3. Logged into *Teams Admin Center* → navigated to *Messaging Policies*.  
+4. Checked the user’s assigned policy → confirmed both Edit sent messages and Delete sent messages were disabled.  
+5. Updated the policy to allow editing and deleting messages, or assigned the user to the *Global (Org-wide default)* policy where those options were enabled.  
+6. Asked the user to log out and back into Teams.  
+7. Retested → edit and delete options appeared and worked as expected.  
+
+## Resolution  
+Adjusted the user’s Teams Messaging Policy to allow message editing and deletion.  
+
+## Prevention / Best Practice  
+- Regularly review Teams Messaging Policies to align with organizational needs.  
+- Document any intentional restrictions so users understand why features are missing.  
+- Assign policies consistently to avoid confusion across departments.  
+
+## Tags  
+M365 Teams Troubleshooting Messaging Policy Chat
