@@ -1,0 +1,30 @@
+ Microsoft Teams Login Loop – User Cannot Sign In
+## Issue  
+User reports being repeatedly prompted to sign in to Microsoft Teams.  
+After entering credentials, Teams reloads but returns to the sign-in page.  
+User can access Teams via web browser without issues.
+## Environment  
+- Application/Service: Microsoft Teams Desktop App  
+- Platform: Windows 11  
+- Account Type: User account  
+## Root Cause  
+Stored authentication tokens in Teams cache conflicted with updated credentials after a password reset.  
+This caused Teams to fail token validation and return to the sign-in loop.
+## Steps Taken  
+1. Verified user can access *Outlook and Teams Web App* → confirmed credentials are valid.  
+2. Checked Microsoft 365 *Service Health Dashboard* → no outage reported.  
+3. Signed out of Teams desktop client fully.  
+4. Cleared Teams cache and credentials:  
+   - %appdata%\Microsoft\Teams  
+   - Windows *Credential Manager* → removed any cached Office/Teams entries.  
+5. Rebooted PC and re-launched Teams.  
+6. User signed in successfully and client synced properly.  
+## Resolution  
+Removed outdated tokens and cleared cached credentials.  
+Teams desktop app re-registered fresh tokens after login.  
+## Prevention / Best Practice  
+- Encourage users to sign out of Teams after password changes instead of force-closing.  
+- Periodically clear Teams cache on managed devices through automation (PowerShell/Intune).  
+- Adopt Single Sign-On (SSO) where possible to reduce repeated logins.  
+## Tags  
+M365 Teams Troubleshooting Authentication Login Loop
