@@ -1,0 +1,31 @@
+# Case 11: Microsoft Teams Web App – File Upload Failing
+
+## Issue  
+User reported being unable to upload files to a Teams channel when using the Web App.  
+Upload showed “Failed” immediately, while desktop Teams worked fine.  
+
+## Environment  
+- Application/Service: Microsoft Teams Web App  
+- Platform: Chrome (latest) on Windows 11  
+- Account Type: User account  
+
+## Root Cause  
+Pop-up blockers and third-party browser extensions (ad-blocker) were interfering with Teams file upload process.  
+
+## Steps Taken  
+1. Reproduced the issue with user account → upload failed instantly.  
+2. Verified file upload worked from Teams Desktop → confirmed issue isolated to browser.  
+3. Disabled Chrome extensions temporarily → upload succeeded.  
+4. Narrowed down cause to ad-blocker extension blocking SharePoint/OneDrive upload calls.  
+5. Whitelisted *.sharepoint.com and *.teams.microsoft.com in extension settings.  
+6. Retested → user could upload files successfully.  
+
+## Resolution  
+Adjusted browser extension settings to allow Teams file uploads.  
+
+## Prevention / Best Practice  
+- Recommend disabling unnecessary extensions for Teams Web.  
+- Educate users that Teams file uploads rely on SharePoint/OneDrive backend.  
+
+## Tags  
+M365 Teams Web App Troubleshooting File Sharing
