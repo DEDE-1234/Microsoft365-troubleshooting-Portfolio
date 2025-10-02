@@ -1,0 +1,27 @@
+ Microsoft Teams Meeting – Camera Not Working
+## Issue  
+User complained that during Teams meetings, their camera was not detected.  
+Other apps (Zoom, Camera app) worked fine, but Teams only showed a black screen.  
+## Environment  
+- Application/Service: Microsoft Teams Desktop App  
+- Platform: Windows 10 Enterprise  
+- Account Type: User account  
+## Root Cause  
+Teams was not granted camera permissions in Windows Privacy settings.  
+Additionally, old Teams cache files were interfering with device detection. 
+## Steps Taken  
+1. Confirmed the camera worked in other apps → ruled out hardware failure.  
+2. Checked *Device Manager* → camera was enabled and drivers up to date.  
+3. Opened *Windows Settings → Privacy → Camera* → noticed Teams was not allowed access.  
+4. Enabled camera access for Microsoft Teams.  
+5. Cleared Teams cache from %appdata%\Microsoft\Teams to remove old device config.  
+6. Relaunched Teams, joined a test meeting → camera detected and working.  
+## Resolution  
+Granted Teams camera permissions in Windows and cleared cache.  
+User could join meetings with full video functionality.  
+## Prevention / Best Practice  
+- Remind users to verify app permissions after Windows updates.  
+- Encourage use of the *Teams web app* as a quick workaround during urgent meetings.  
+- Regularly update Teams client to avoid compatibility issues with Windows privacy settings. 
+## Tags  
+M365 Teams Troubleshooting Camera Meeting
