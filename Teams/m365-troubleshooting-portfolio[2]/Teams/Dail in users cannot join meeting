@@ -1,0 +1,35 @@
+ Microsoft Teams – Dial-In Users Cannot Join Meetings
+
+## Issue  
+External participants reported they could not join a Teams meeting via phone dial-in.  
+They received the invite but there was *no dial-in number or conference ID* included.  
+Internal participants joining via Teams client had no issues.  
+
+## Environment  
+- Application/Service: Microsoft Teams (Audio Conferencing)  
+- Platform: Phone dial-in (PSTN)  
+- Account Type: External users invited to Teams meeting  
+
+## Root Cause  
+The meeting organizer did not have an *Audio Conferencing license* assigned in Microsoft 365.  
+Without the license, Teams meeting invites did not include a dial-in number or conference ID.  
+
+## Steps Taken  
+1. Reviewed the meeting invite → confirmed no dial-in details were present.  
+2. Checked Microsoft 365 admin center → organizer account had a standard Teams license but no *Audio Conferencing add-on*.  
+3. Assigned an *Audio Conferencing license* to the organizer.  
+4. Had the organizer reschedule a new meeting after license propagation.  
+5. Verified the new meeting invite included a dial-in number and conference ID.  
+6. Tested with external participant → successful dial-in connection.  
+
+## Resolution  
+Assigned the proper Audio Conferencing license to the organizer.  
+New meeting invites generated with dial-in numbers and conference IDs.  
+
+## Prevention / Best Practice  
+- Ensure Audio Conferencing licenses are assigned to users who regularly host external meetings.  
+- Communicate clearly to meeting organizers that invites must be regenerated after license changes.  
+- Periodically audit licensing to confirm all required features are enabled.  
+
+## Tags  
+M365 Teams Troubleshooting Dial-in Audio Conferencing
