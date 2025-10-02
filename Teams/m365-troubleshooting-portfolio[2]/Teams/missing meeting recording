@@ -1,0 +1,37 @@
+ Microsoft Teams – Missing Meeting Recording
+
+## Issue  
+User reported that a Teams meeting they recorded did not appear in the chat after the meeting ended.  
+Other participants also could not locate the recording link.  
+
+## Environment  
+- Application/Service: Microsoft Teams (Meetings & Recording)  
+- Platform: Teams Desktop and Web App  
+- Storage: OneDrive/SharePoint (depending on meeting type)  
+- Account Type: Internal user (Meeting Organizer)  
+
+## Root Cause  
+Meeting recordings in Teams are stored in *OneDrive (for private meetings)* or *SharePoint (for channel meetings)*.  
+The recording was not visible in chat because the user’s recording policy was disabled at the tenant level, preventing automatic upload.  
+
+## Steps Taken  
+1. Verified recording indicator appeared during meeting → confirmed it was initiated successfully.  
+2. Checked chat history after meeting → no recording link found.  
+3. Navigated to *OneDrive → Recordings* folder for private meetings → folder missing recording file.  
+4. Confirmed Teams Admin Center policy → Allow cloud recording = Off for the affected user’s policy.  
+5. Updated the user’s Teams Meeting Policy to enable *Cloud Recording*.  
+6. For the missing session, confirmed that the recording never uploaded due to policy restriction (could not be recovered).  
+7. Tested with a new meeting after policy change → recording appeared in chat and stored in OneDrive automatically.  
+
+## Resolution  
+Enabled Teams Meeting Policy to allow cloud recording.  
+User’s subsequent recordings uploaded correctly and appeared in chat/SharePoint as expected.  
+
+## Prevention / Best Practice  
+- Ensure recording policies are enabled for roles that need them.  
+- Inform users that recordings for *channel meetings* save to SharePoint, while *private meetings* save to the organizer’s OneDrive.  
+- Encourage users to verify policy settings before important sessions.  
+- Set up retention policies in Stream/SharePoint to manage recordings securely.  
+
+## Tags  
+M365 Teams Troubleshooting Meetings Recording
