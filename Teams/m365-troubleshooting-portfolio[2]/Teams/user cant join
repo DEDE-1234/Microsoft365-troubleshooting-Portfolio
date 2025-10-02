@@ -1,0 +1,36 @@
+# Case 7: Microsoft Teams – User Cannot Join Meetings via Desktop App
+
+## Issue  
+User reported they could not join any scheduled Teams meetings from the desktop client.  
+Clicking on the meeting link opened Teams, but it stayed stuck on a blank screen.  
+The same user could join meetings successfully through the browser version.  
+
+## Environment  
+- Application/Service: Microsoft Teams Desktop App  
+- Platform: Windows 11 Pro  
+- Account Type: User account  
+
+## Root Cause  
+The issue was caused by corrupted Teams cache files and an outdated Teams client version that failed to load the meeting join protocol correctly.  
+
+## Steps Taken  
+1. Confirmed the user could join meetings on *Teams Web* → ruled out service-wide outage.  
+2. Checked Microsoft 365 *Service Health Dashboard* → no reported incidents.  
+3. Verified Teams version → found it was not updated to the latest build.  
+4. Cleared Teams cache folders from:  
+   - %appdata%\Microsoft\Teams  
+   - %localappdata%\Microsoft\Teams  
+5. Uninstalled Teams completely and reinstalled the latest version from Microsoft.  
+6. Relaunched Teams and had the user test by joining a scheduled meeting → worked successfully.  
+
+## Resolution  
+Updated Teams client and cleared cache.  
+User was able to join meetings from the desktop app without issues.  
+
+## Prevention / Best Practice  
+- Encourage users to keep Teams client up to date.  
+- Automate Teams updates via endpoint management (e.g., Intune).  
+- Provide users with a quick workaround: use *Teams Web* if the desktop app fails.  
+
+## Tags  
+M365 Teams Troubleshooting Meetings Client Update
