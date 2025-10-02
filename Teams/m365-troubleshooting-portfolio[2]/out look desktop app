@@ -1,0 +1,20 @@
+# Case 3: Outlook Desktop Not Connecting to Exchange Online
+## Issue  
+User reports Outlook desktop app stuck on *"Trying to connect…"* when accessing mailbox hosted in Microsoft 365.  
+Outlook on the web works fine.
+## Root Cause  
+Outlook profile was holding cached credentials after a recent password reset.  
+Windows Credential Manager wasn’t updated, causing repeated authentication failures.
+## Steps Taken  
+1. Verified mailbox accessible via *Outlook Web App* → confirmed it’s not a service outage.  
+2. Checked Outlook connection status (Ctrl + right-click Outlook icon → *Connection Status*).  
+   - Saw repeated 401 Unauthorized errors.  
+3. Cleared stored credentials from *Windows Credential Manager*.  
+4. Re-launched Outlook → prompted for updated credentials.  
+5. Repaired Outlook profile (Control Panel → Mail → Profiles).  
+6. User logged in successfully; mailbox synced without errors.  
+## Resolution  
+Removed outdated credentials and reconfigured Outlook profile.  
+## Prevention / Best Practice  
+- Educate users to sign out and back in after password resets.  
+- Encourage use of *modern authentication* and *conditional access policies*.  
