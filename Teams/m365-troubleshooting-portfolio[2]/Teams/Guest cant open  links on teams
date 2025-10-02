@@ -1,0 +1,34 @@
+# Case 12: Microsoft Teams – Guest Users Cannot Open Links in Teams
+
+## Issue  
+Guest users reported they were unable to open shared links (files and tabs) inside Teams channels.  
+Clicking the link returned an *“Access Denied”* or redirected them to a blank page.  
+Internal users had no issues opening the same links.  
+
+## Environment  
+- Application/Service: Microsoft Teams (Guest Access)  
+- Platform: Teams Web and Desktop App  
+- Account Type: External Guest users from another organization  
+
+## Root Cause  
+The issue was caused by missing *SharePoint/OneDrive permissions* for guest accounts.  
+Even though guests had access to the Teams channel, they were not granted file access at the SharePoint site level.  
+
+## Steps Taken  
+1. Confirmed the issue was specific to guest users; internal staff had normal access.  
+2. Reproduced with test guest account → same error when opening channel files and links.  
+3. Checked *SharePoint permissions* for the connected Teams site → guests were not added to the *Members* group.  
+4. Added guest users into the appropriate SharePoint group with *Edit* permissions.  
+5. Asked guest user to log out and back in → links opened successfully.  
+
+## Resolution  
+Granted guest users proper SharePoint site permissions.  
+Guests could open links and access shared content inside Teams.  
+
+## Prevention / Best Practice  
+- When enabling guest access in Teams, verify matching permissions in the linked SharePoint/OneDrive site.  
+- Use Azure AD (Entra ID) B2B policies to standardize external access.  
+- Regularly review and audit guest permissions to avoid broken collaboration.  
+
+## Tags  
+M365 Teams Guest Access Troubleshooting Permissions
