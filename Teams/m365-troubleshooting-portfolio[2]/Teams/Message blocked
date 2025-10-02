@@ -1,0 +1,33 @@
+: Microsoft Teams – Message Blocked Notification
+## Issue  
+User reported seeing *“This message has been blocked”* after sending a chat message in Teams.  
+The recipient never received the message, and the sender could not resend it.  
+
+## Environment  
+- Application/Service: Microsoft Teams (Chat and Messaging)  
+- Platform: Teams Desktop App and Web App  
+- Account Type: Internal user  
+
+## Root Cause  
+Message was blocked due to *Microsoft Purview Communication Compliance* or *Data Loss Prevention (DLP) policy* applied in Microsoft 365.  
+The policy flagged sensitive content (e.g., credit card numbers, restricted keywords) and automatically prevented delivery.  
+
+## Steps Taken  
+1. Verified user could send and receive other normal messages.  
+2. Reproduced with a test message containing restricted terms → same block message appeared.  
+3. Checked *Microsoft 365 Compliance Center → Data Loss Prevention policies*.  
+4. Found that the organization had a DLP rule blocking sensitive data types from being shared in Teams chat.  
+5. Worked with compliance admin to confirm the block was intentional and not a system error.  
+6. Educated user on policy restrictions and why certain data cannot be sent via Teams.  
+
+## Resolution  
+Confirmed the block was triggered by compliance/DLP policies.  
+No technical error—policy enforcement was working as designed.  
+
+## Prevention / Best Practice  
+- Clearly communicate to users what data types are restricted in Teams.  
+- Provide secure alternatives (e.g., encrypted email or approved file-sharing system) for handling sensitive data.  
+- Regularly review DLP and communication compliance rules to ensure they align with business needs.  
+
+## Tags  
+M365 Teams Troubleshooting Compliance DLP Messaging
