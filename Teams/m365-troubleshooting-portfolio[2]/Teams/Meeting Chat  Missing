@@ -1,0 +1,36 @@
+# Case 13: Microsoft Teams – Meeting Chat Missing for Users
+
+## Issue  
+User reported that the chat panel was missing during Teams meetings.  
+They could see video, participants, and share screen options, but the *Chat* tab was not visible.  
+Other colleagues in the same meeting could see and use chat normally.  
+
+## Environment  
+- Application/Service: Microsoft Teams (Meetings)  
+- Platform: Desktop App and Web App  
+- Account Type: Internal user  
+
+## Root Cause  
+Meeting chat was disabled due to *Teams Meeting Policy* applied via Microsoft Teams Admin Center.  
+The affected user was under a restricted policy where meeting chat was set to *Disabled*.  
+
+## Steps Taken  
+1. Confirmed the issue occurred across both *Teams Desktop* and *Web App* → ruled out client corruption.  
+2. Checked if the issue was *meeting-specific* → user had no chat option in any meeting.  
+3. Reviewed Teams Admin Center → found user assigned to a custom Meeting Policy.  
+   - Policy setting: Meeting chat = Disabled.  
+4. Created/updated a new Meeting Policy with Meeting chat = Enabled.  
+5. Assigned the correct policy to the affected user.  
+6. Waited for policy replication (~30 minutes) and had the user re-login to Teams.  
+7. User rejoined meeting → Chat tab was visible and functional.  
+
+## Resolution  
+Adjusted Teams Meeting Policy in the Admin Center to enable meeting chat for the user.  
+
+## Prevention / Best Practice  
+- Review meeting policies before assigning them widely to users.  
+- Communicate to users when restrictions (like chat disabled) are intentional.  
+- Maintain a standard baseline policy with collaboration features enabled unless business reasons require otherwise.  
+
+## Tags  
+M365 Teams Troubleshooting Meeting Policy Chat
