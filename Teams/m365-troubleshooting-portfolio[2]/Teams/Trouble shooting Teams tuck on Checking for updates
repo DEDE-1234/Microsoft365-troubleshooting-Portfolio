@@ -1,0 +1,36 @@
+# Case 4: Microsoft Teams Not Loading – Stuck on "Checking for Updates"
+
+## Issue  
+User reports that Microsoft Teams desktop app is stuck on *"Checking for updates"* and does not progress to the sign-in screen.  
+Teams web app works fine in browser.
+
+## Environment  
+- Application/Service: Microsoft Teams Desktop App  
+- Platform: Windows 10 Pro  
+- Account Type: User account  
+
+## Root Cause  
+Corrupted Teams cache files were preventing the desktop client from initializing properly.
+
+## Steps Taken  
+1. Verified Teams availability on *web version* → confirmed service was healthy.  
+2. Checked Microsoft 365 Service Health Dashboard → no reported outages.  
+3. Closed Teams client completely from the system tray.  
+4. Deleted cache files from:  
+   - %appdata%\Microsoft\Teams  
+   - %localappdata%\Microsoft\Teams  
+   - %localappdata%\Microsoft\TeamsMeetingAddin  
+   - %localappdata%\SquirrelTemp  
+5. Relaunched Teams → prompted for fresh sign-in.  
+6. User successfully signed in and Teams loaded without errors.  
+
+## Resolution  
+Cleared corrupted Teams cache files and restarted the client.  
+
+## Prevention / Best Practice  
+- Instruct users to use Teams web app temporarily if desktop issues persist.  
+- Educate users on how to clear Teams cache when login or loading errors occur.  
+- Keep Teams client updated via company-wide endpoint management (e.g., Intune).  
+
+## Tags  
+M365 Teams Troubleshooting Cache Authentication
